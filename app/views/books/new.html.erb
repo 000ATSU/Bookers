@@ -1,26 +1,33 @@
 <h1>Books</h1>
-
+<h4>title</h4>
+<h4>body</h4>
 <% @books.each do |book| %>
- <p><%= book.title %></p>
- <p><%= book.body %></p>
-<% end %>
-
-<% if @book.errors.any? %>
- <%= @book.errors.count %>
- <ul>
-   <% @book.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-   <% end %> 
- </ul>
+<tr>
+ <%= book.title %>
+ <%= book.body %>
+ <%= link_to "show",book_path(book.id) %>
+ <%= link_to "edit" %>
+ <%= link_to "destroy" %>
+</tr> 
 <% end %>
 
 <%= form_with model:@book, url: '/books', method: :post do |f| %>
  <h2>New book</h2>
- <label>Title</label>
- <%= f.text_field :title %>     
- <label>Body</label>
- <%= f.text_area :body %>
- <%= f.submit 'Create book' %>
+ 
+ <% if @book.errors.any? %>
+  <h3>Error (Did not save)</h3>
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+     <li><%= message %></li>
+    <% end %> 
+  </ul>
+ <% end %>
+ 
+  <label>Title</label>
+  <%= f.text_field :title %>     
+  <label>Body</label>
+  <%= f.text_area :body %>
+  <%= f.submit 'Create book' %>
 <% end %> 
  
     
