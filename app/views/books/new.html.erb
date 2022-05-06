@@ -6,20 +6,19 @@
    <%= book.body %>
    <%= link_to "Show",book_path(book.id) %>
    <%= link_to "Edit",edit_book_path(book.id)  %>
-   <%= link_to "Destroy" %>
+   <%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %> 
 <% end %>
 
-<%= form_with model:@book, url: '/books', method: :post do |f| %>
+<%= form_with model: @book, url: '/books', method: :post do |f| %>
  <h2>New book</h2>
- 
- <% if @book.errors.any? %>
-  <h3>Error (Did not save)</h3>
-  <ul>
-  <% @book.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-  <% end %> 
-  </ul>
- <% end %>
+   <% if @book.errors.any? %>
+    <h3>Error (Did not save)</h3>
+    <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %> 
+    </ul>
+   <% end %>
  
   <label>Title</label>
    <%= f.text_field :title %>     
