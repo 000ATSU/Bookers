@@ -1,14 +1,23 @@
  <p id="notice"><%= notice %></p>
 <h1>Books</h1>
-<h4>title</h4>
-<h4>body</h4>
-<% @books.each do |book| %>
-   <%= book.title %>
-   <%= book.body %>
-   <%= link_to "Show",book_path(book.id) %>
-   <%= link_to "Edit",edit_book_path(book.id)  %>
-   <%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %> 
-<% end %>
+<table>
+ <thead>
+  <tr>
+   <th>title</th>
+   <th>body</th>
+   <th colspan="3"></th>
+  </tr>
+ </thead>
+ <tbody>
+  <% @books.each do |book| %>
+     <%= book.title %>
+     <%= book.body %>
+     <%= link_to "Show",book_path(book.id) %>
+     <%= link_to "Edit",edit_book_path(book.id)  %>
+     <%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %> 
+  <% end %>
+ </tbody>
+</table>
 
 <%= form_with model: @book, url: '/books', method: :post do |f| %>
  <h2>New book</h2>
